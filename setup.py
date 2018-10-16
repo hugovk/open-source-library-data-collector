@@ -24,7 +24,7 @@ def getRequires():
             'uritemplate.py',
             'pytz',
             'python-http-client']
-    if (3, 4) <= sys.version_info < (3, 6):
+    if sys.version_info.major >= 3:
         deps.append('pymysql')
     return deps
 
