@@ -25,18 +25,18 @@ class TestConfig(unittest.TestCase):
     def test_initialization(self):
         if os.environ.get('TRAVIS') is None:
             github_token = os.environ.get('GITHUB_TOKEN')
-            self.assertTrue(isinstance(github_token, basestring))
+            self.assertIsInstance(github_token, basestring)
             sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
-            self.assertTrue(isinstance(sendgrid_api_key, basestring))
+            self.assertIsInstance(sendgrid_api_key, basestring)
             mysql_db = os.environ.get('MYSQL_DB_URL')
-            self.assertTrue(isinstance(mysql_db, basestring))
-            self.assertTrue(isinstance(self.config.github_user, basestring))
-            self.assertTrue(isinstance(self.config.github_repos, list))
-            self.assertTrue(isinstance(self.config.package_manager_urls, list))
-            self.assertTrue(isinstance(self.config.to_email, basestring))
-            self.assertTrue(isinstance(self.config.from_email, basestring))
-            self.assertTrue(isinstance(self.config.email_subject, basestring))
-            self.assertTrue(isinstance(self.config.email_body, basestring))
+            self.assertIsInstance(mysql_db, basestring)
+            self.assertIsInstance(self.config.github_user, basestring)
+            self.assertIsInstance(self.config.github_repos, list)
+            self.assertIsInstance(self.config.package_manager_urls, list)
+            self.assertIsInstance(self.config.to_email, basestring)
+            self.assertIsInstance(self.config.from_email, basestring)
+            self.assertIsInstance(self.config.email_subject, basestring)
+            self.assertIsInstance(self.config.email_body, basestring)
 
     def test_mysql_db_connection_string(self):
         if os.environ.get('TRAVIS'):
@@ -88,7 +88,7 @@ class TestDBConnector(unittest.TestCase):
                                     number_of_forks=0
                                     )
             res = self.db.add_data(github_data_import)
-            self.assertTrue(isinstance(res, GitHubData))
+            self.assertIsInstance(res, GitHubData)
             res = self.db.delete_data(res.id, 'github_data')
             self.assertTrue(res)
 
@@ -101,15 +101,15 @@ class TestDBConnector(unittest.TestCase):
                                     ruby_downloads=0
                                     )
             res = self.db.add_data(packagedata)
-            self.assertTrue(isinstance(res, PackageManagerData))
+            self.assertIsInstance(res, PackageManagerData)
             res = self.db.delete_data(res.id, 'package_manager_data')
             self.assertTrue(res)
 
     def test_get_data(self):
         if os.environ.get('TRAVIS') is None:
             github_data = self.db.get_data(GitHubData)
-            self.assertTrue(isinstance(github_data, list))
-            self.assertTrue(isinstance(github_data[0], GitHubData))
+            self.assertIsInstance(github_data, list)
+            self.assertIsInstance(github_data[0], GitHubData)
 
 
 class TestGitHub(unittest.TestCase):
@@ -123,7 +123,7 @@ class TestGitHub(unittest.TestCase):
         if os.environ.get('TRAVIS') is None:
             res = self.github.update_library_data(self.config.github_user,
                                                   self.config.github_repos[0])
-            self.assertTrue(isinstance(res, GitHubData))
+            self.assertIsInstance(res, GitHubData)
             res = self.db.delete_data(res.id, 'github_data')
             self.assertTrue(res)
 
@@ -139,7 +139,7 @@ class TestPackageManagers(unittest.TestCase):
         if os.environ.get('TRAVIS') is None:
             res = self.pm.update_package_manager_data(
                 self.config.package_manager_urls)
-            self.assertTrue(isinstance(res, PackageManagerData))
+            self.assertIsInstance(res, PackageManagerData)
             res = self.db.delete_data(res.id, 'package_manager_data')
             self.assertTrue(res)
 
