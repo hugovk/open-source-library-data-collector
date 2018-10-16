@@ -30,4 +30,4 @@ class TestRepositoryFiles(unittest.TestCase):
     def test_files_exists(self):
         for files in self.required_repo_files:
             self.assertTrue(self._file_exists(files),
-                            '{0} does not exist'.format(' or '.join(files)))
+                            '{} does not exist'.format(' or '.join(files)))
