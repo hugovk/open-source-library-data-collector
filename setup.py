@@ -24,7 +24,7 @@ def getRequires():
             'uritemplate.py',
             'pytz',
             'python-http-client']
-    if (3, 3) <= sys.version_info < (3, 6):
+    if (3, 4) <= sys.version_info < (3, 6):
         deps.append('pymysql')
     return deps
 
@@ -49,10 +49,15 @@ setup(
         'Reporting',
         'Package Managers'
     ],
+    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
     classifiers=[
-        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5'
+        'Programming Language :: Python :: 3.6'
+        'Programming Language :: Python :: 3.7'
     ],
     entry_points={
         'console_scripts': ['osscollect=cli:cli'],

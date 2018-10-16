@@ -4,7 +4,7 @@ import re
 from bs4 import BeautifulSoup
 from db_connector import DBConnector, PackageManagerData
 import sys
-if (3, 1) < sys.version_info < (3, 6):
+if (3, 4) < sys.version_info < (3, 6):
     def u(x):
         return x
 else:
